@@ -1,0 +1,7 @@
+.idea
+CMakeCache.*
+CMakeFiles/
+bin/
+cmake_install.cmake
+*.o
+Makefile
