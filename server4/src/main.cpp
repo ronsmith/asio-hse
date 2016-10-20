@@ -33,8 +33,7 @@ int main(int argc, char* argv[])
     boost::asio::io_service io_service;
 
     // Launch the initial server coroutine.
-    http::server4::server(io_service, argv[1], argv[2],
-                          http::server4::file_handler(argv[3]))();
+    http::server4::server(io_service, argv[1], argv[2], http::server4::file_handler(argv[3]))();
 
     // Wait for signals indicating time to shut down.
     boost::asio::signal_set signals(io_service);
@@ -43,8 +42,8 @@ int main(int argc, char* argv[])
 #if defined(SIGQUIT)
     signals.add(SIGQUIT);
 #endif // defined(SIGQUIT)
-    signals.async_wait(boost::bind(
-            &boost::asio::io_service::stop, &io_service));
+
+    signals.async_wait(boost::bind(&boost::asio::io_service::stop, &io_service));
 
     // Run the server.
     io_service.run();
